@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Ionic Blank
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+      <ion-list>
+        <ion-item *ngFor="let usuario of usuarios | async" (click)="showOptions(usuario.$key, usuario.nombre)">
+          {{usuario.nombre}} {{usuario.apellido}}          
+        </ion-item>
+      </ion-list>
+
+      <ion-buttons end>
+        <button ion-button icon-only (click)="addUsuario()">
+          <ion-icon name="add"></ion-icon>
+        </button>
+               
+
+      </ion-buttons>
+
+      <button ion-button button-possitive (click)="logout()">Cerrar sesión</button>
+
+
+
+</ion-content>
