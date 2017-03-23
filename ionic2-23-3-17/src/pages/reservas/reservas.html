@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Reservas
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+      <ion-list>
+        <ion-item *ngFor="let reserva of reservas | async">
+          {{reserva.nombre}}       
+        </ion-item>
+      </ion-list>
+      <ion-list>
+        <ion-item *ngFor="let reserva of reservas | async">
+               
+        </ion-item>
+      </ion-list>
+      <a>{{r}}</a>
+</ion-content>
