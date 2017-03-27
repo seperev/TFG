@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 
 import {AngularFire, FirebaseListObservable, AuthProviders, AuthMethods} from 'angularfire2';
-import { NavController, AlertController, ActionSheetController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, ActionSheetController } from 'ionic-angular';
+import { HomePage } from '../home/home';
 
 import firebase from 'firebase';
 
@@ -16,39 +17,24 @@ export class Reservas {
   usuarios: FirebaseListObservable<any>;
   reservas2: FirebaseListObservable<any>;
   loginForm:any;
-  re: any;
-  r: string;
+  res:any;
 
   reservasRef: any = firebase.database().ref('reservas');
 
-  constructor(public navCtrl: NavController,  
+  constructor(public navCtrl: NavController, 
               public alertCtrl: AlertController, af: AngularFire, 
-              public actionSheetCtrl: ActionSheetController) {
-    var reservas = [];
-    this.re = new Array();
-    //this.re = 'adios';
-    this.r = 'hola';
+              public actionSheetCtrl: ActionSheetController,
+              public params: NavParams) {
+    this.res = [];
     var user = firebase.auth().currentUser;
-    //this.reservas = af.database.list('/reservas');
-    var a = af.database.list('/reservas');
-    //this.reservas.push(a[0]);
-    //console.log(a);
-    //console.log(user.uid);
-    this.reservasRef.orderByChild('usuario').equalTo(user.uid).on("child_added", function(snapshot){
-            //a.push(snapshot.val().nombre)
-            this.re.push(snapshot.val());
-            //this.re.push(snapshot.val())
-            //console.log(this.re[0]);
-            //console.log('nombre ' + this.re[0].nombre);
-            //r.push(snapshot.val());
-            //console.log(this.re);
-            //console.log(snapshot.val().nombre)
-        });
-        
-    console.log(a);
+    this.res = af.database.list('/reservas', {
+      query: {
+        orderByChild: 'usuario',
+        equalTo: user.uid
+      }
+    });
+    
 
   }
-
-
 
 }

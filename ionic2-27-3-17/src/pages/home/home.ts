@@ -118,12 +118,15 @@ export class HomePage {
   }
 
   verReservas(usuario){
-    var res = [];
+    var rese = [];
     this.reservasRef.orderByChild('usuario').equalTo(usuario).on("child_added", function(snapshot){
-            res.push(snapshot.val().nombre)});
+            rese.push(snapshot.val().nombre)});
+            
 
     var user = firebase.auth().currentUser;
-    console.log(user.uid);
+
+    //console.log(r);
+    //console.log(user.uid);
     this.navCtrl.push(Reservas);
     
   }
