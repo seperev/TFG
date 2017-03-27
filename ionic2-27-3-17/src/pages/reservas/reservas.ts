@@ -25,7 +25,8 @@ export class Reservas {
               public alertCtrl: AlertController, af: AngularFire, 
               public actionSheetCtrl: ActionSheetController) {
     var reservas = [];
-    this.re = [];
+    this.re = new Array();
+    //this.re = 'adios';
     this.r = 'hola';
     var user = firebase.auth().currentUser;
     //this.reservas = af.database.list('/reservas');
@@ -35,8 +36,9 @@ export class Reservas {
     //console.log(user.uid);
     this.reservasRef.orderByChild('usuario').equalTo(user.uid).on("child_added", function(snapshot){
             //a.push(snapshot.val().nombre)
-            //this.re.push(snapshot.val());
+            this.re.push(snapshot.val());
             //this.re.push(snapshot.val())
+            //console.log(this.re[0]);
             //console.log('nombre ' + this.re[0].nombre);
             //r.push(snapshot.val());
             //console.log(this.re);
