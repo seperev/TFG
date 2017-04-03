@@ -7,6 +7,8 @@
 </ion-header>
 
 <ion-content padding>
+
+  <!--
       <ion-list>
         <ion-item *ngFor="let usuario of usuarios | async" (click)="showOptions(usuario.$key, usuario.nombre)">
           {{usuario.nombre}} {{usuario.apellido}}          
@@ -21,16 +23,40 @@
       
 
       </ion-buttons>
-
+-->
       <button ion-button button-possitive (click)="logout()">Cerrar sesión</button>
 
-      <table>
-        <tr>
-          <td>Hola</td>
-        </tr>
-        <tr>
-          <td>Adios</td>
-        </tr>
-      </table>
+
+<ion-content class="grid-basic-page">
+  <ion-row>
+    <ion-col>col</ion-col>
+    <ion-col>col</ion-col>
+    <ion-col>col</ion-col>
+
+  </ion-row>
+
+  <ion-row center>
+    <ion-col>col</ion-col>
+    <ion-col>col</ion-col>
+    <ion-col>col</ion-col>
+  </ion-row>
+
+  <ion-row center>
+    <ion-col offset-25>col</ion-col>
+    <ion-col>col</ion-col>
+  </ion-row>
+
+  <ion-row baseline>
+    <ion-col offset-50>col</ion-col>
+    </ion-col>
+  </ion-row>
+
+  <ion-row baseline>
+    <ion-col offset-75>hola
+    </ion-col>
+  </ion-row>
+
+
+</ion-content>
       
 </ion-content>

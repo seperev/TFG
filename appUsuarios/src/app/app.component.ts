@@ -6,6 +6,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Page1 } from '../pages/page1/page1';
 import { Page2 } from '../pages/page2/page2';
 
+import { Auth } from '../pages/autenticacion/autenticacion';
+import { AngularFire} from 'angularfire2';
+import { AuthProvider } from '../providers/auth-provider';
+
+import { Reservas } from '../pages/reservas/reservas';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -17,13 +23,15 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar,
+    public af: AngularFire, public authProvider:AuthProvider, public splashScreen: SplashScreen) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Page One', component: Page1 },
-      { title: 'Page Two', component: Page2 }
+      { title: 'Page Two', component: Page2 },
+      { title: 'Reservas', component: Reservas }
     ];
 
   }
@@ -34,6 +42,13 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.af.auth.subscribe(auth => {
+        if(auth) {
+           this.rootPage = Reservas;
+        } else {
+           this.rootPage = Auth;
+        }
+     });
     });
   }
 

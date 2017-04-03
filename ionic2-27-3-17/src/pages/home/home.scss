@@ -1,3 +1,24 @@
 page-home {
+.cell{
+   display: block;
+   width: 33%;
+   border: 2px solid black
+}
+
+table{
+    border: 2px solid black;
+    width: 33%
+}
+
+
+
+
+  ion-col  {
+    background-color: #F9FAFB;
+    padding: 5px;
+    border: 1px solid #ddd;
+    //border-radius: 2px;
+    text-align: center;
+}
 
 }

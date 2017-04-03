@@ -1,0 +1,87 @@
+Mirar el método subscribe para llamadas http para hacer llamadas a la base de datos.
+Mirar ionic cloud para que genere las llamadas JSON a la base de datos.
+
+Cuenta ionic creator:
+pruebaprueba@gmail.com	
+abcdefg
+
+Crear el proyecto en ionic2
+ionic start nombre_app sidemenu --v2
+
+Añadir paquetes para que se pueda utilizar Firebase: 
+	npm install @ionic/app-scripts@latest --save-dev
+	npm install firebase angularfire2 --save
+
+	
+https://javebratt.com/angularfire2-ionic-setup/
+	
+En ionic 2 para que me funcionase el servidor e ejecutado varios comandos que no se si han servido para bien o para mal:
+	npm install rxjs
+	npm install 
+	npm install 
+	npm rebuid node-saas
+	npm install reflect-metadata
+	npm install isarray
+	
+	
+	
+En ionic para añadir las plataformas que quiero
+	ionic platform -- Para ver todas las plataformas posibles
+	ionic platform add nombre_de_la_plataforma
+	
+Para generar los ejecutables de las diferentes plataformas	
+	ionic build nombre_de_la_plataforma
+	
+ionic run nombre_de_la_plataforma
+	
+	
+	
+Actualizar un perfil de usuario
+
+Puedes actualizar información básica del perfil de usuario—su nombre para mostrar y la URL de su foto de perfil—con el métodoupdateProfile. Por ejemplo:
+
+var user = firebase.auth().currentUser;
+
+user.updateProfile({
+  displayName: "Jane Q. User",
+  photoURL: "https://example.com/jane-q-user/profile.jpg"
+}).then(function() {
+  // Update successful.
+}, function(error) {
+  // An error happened.
+});
+
+
+Configurar la contraseña de un usuario
+
+Puedes configurar la contraseña de un usuario con el método updatePassword. Por ejemplo:
+
+var user = firebase.auth().currentUser;
+var newPassword = getASecureRandomPassword();
+
+user.updatePassword(newPassword).then(function() {
+  // Update successful.
+}, function(error) {
+  // An error happened.
+});
+
+Importante: Para configurar la contraseña de un usuario, este último tiene que haber iniciado sesión recientemente. Consulta Volver a autenticar un usuario.
+
+
+
+Enviar un correo electrónico de reestablecimiento de contraseña
+
+Puedes enviarle un correo electrónico de reestablecimiento de contraseña a un usuario con el métodosendPasswordResetEmail . Por ejemplo:
+
+var auth = firebase.auth();
+var emailAddress = "user@example.com";
+
+auth.sendPasswordResetEmail(emailAddress).then(function() {
+  // Email sent.
+}, function(error) {
+  // An error happened.
+});
+
+Puedes personalizar la plantilla del correo electrónico que se usa en la sección de Autenticación de Firebase console, en la página de plantillas de correos electrónicos. Consulta Plantillas de correos electrónicos en el Centro de ayuda de Firebase.
+
+También puedes enviar correos electrónicos de reestablecimiento de contraseña desde Firebase console.
