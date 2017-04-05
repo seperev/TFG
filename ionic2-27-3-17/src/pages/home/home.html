@@ -6,8 +6,6 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-
   <!--
       <ion-list>
         <ion-item *ngFor="let usuario of usuarios | async" (click)="showOptions(usuario.$key, usuario.nombre)">
@@ -24,39 +22,96 @@
 
       </ion-buttons>
 -->
-      <button ion-button button-possitive (click)="logout()">Cerrar sesión</button>
-
+      
 
 <ion-content class="grid-basic-page">
+
+  <ion-card class="fecha">
+    <!--<ion-card-header color="primary">Fecha</ion-card-header>-->
+    <ion-card-content>
+      <ion-list>
+        <ion-item class="a">
+          <!--<ion-label>Fecha</ion-label>-->
+          <ion-datetime class="b"
+            displayFormat="DD/MM/YYYY"
+            pikerFormat="YYY MM DD"
+            [(ngModel)]="fecha"
+            cancelText="Cancelar"
+            doneText="OK"
+            min={{minFecha}}
+            max={{maxFecha}}>
+          </ion-datetime>
+        </ion-item>
+        <!--
+        <ion-item>
+          <p text-center>Valor de fecha: {{fecha.substr(0,10)}}</p>
+        </ion-item>-->
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+<!--
   <ion-row>
-    <ion-col>col</ion-col>
-    <ion-col>col</ion-col>
-    <ion-col>col</ion-col>
-
-  </ion-row>
-
-  <ion-row center>
-    <ion-col>col</ion-col>
-    <ion-col>col</ion-col>
-    <ion-col>col</ion-col>
-  </ion-row>
-
-  <ion-row center>
-    <ion-col offset-25>col</ion-col>
-    <ion-col>col</ion-col>
-  </ion-row>
-
-  <ion-row baseline>
-    <ion-col offset-50>col</ion-col>
-    
-  </ion-row>
-
-  <ion-row baseline>
-    <ion-col offset-75>hola
+    <ion-col class="hora"></ion-col>
+    <ion-col *ngFor="let pista of pistas | async">
+      {{pista.nombre}}
     </ion-col>
   </ion-row>
 
-
-</ion-content>
+  <ion-row>
+    <ion-col class="hora">10:00</ion-col>
+    <ion-col *ngFor="let pista of pistas | async">
       
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col class="hora">11:00</ion-col>
+    <ion-col *ngFor="let pista of pistas | async">
+      
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col class="hora">12:00</ion-col>
+    <ion-col *ngFor="let pista of pistas | async">
+      
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col class="hora">14:00</ion-col>
+    <ion-col *ngFor="let pista of pistas | async">
+      
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col class="hora">15:00</ion-col>
+    <ion-col *ngFor="let pista of pistas | async">
+      
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col class="hora">16:00</ion-col>
+    <ion-col *ngFor="let pista of pistas | async">
+      
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col class="hora">17:00</ion-col>
+    <ion-col *ngFor="let pista of pistas | async">
+      
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col class="hora">18:00</ion-col>
+    <ion-col *ngFor="let pista of pistas | async">
+      
+    </ion-col>
+  </ion-row>
+-->
 </ion-content>

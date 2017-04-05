@@ -21,8 +21,13 @@ export class HomePage {
   
   usuarios: FirebaseListObservable<any>;
   reservas: FirebaseListObservable<any>;
+  pistas: FirebaseListObservable<any>;
   loginForm:any;
 
+  fechaCorta: string = new Date().toISOString();
+  fecha: string = this.fechaCorta;
+  minFecha: string = (new Date().getFullYear()-5).toString();
+  maxFecha: string = (new Date().getFullYear()+3).toString();
   reservasRef: any = firebase.database().ref('reservas');
 
   constructor(public navCtrl: NavController,  
@@ -32,6 +37,7 @@ export class HomePage {
               public data:DataProvider) {
     this.usuarios = af.database.list('/usuarios');
     this.reservas = af.database.list('/reservas');
+    this.pistas = af.database.list('/pistas');
    
 
 
@@ -118,15 +124,12 @@ export class HomePage {
   }
 
   verReservas(usuario){
-    var rese = [];
+    var res = [];
     this.reservasRef.orderByChild('usuario').equalTo(usuario).on("child_added", function(snapshot){
-            rese.push(snapshot.val().nombre)});
-            
+            res.push(snapshot.val().nombre)});
 
     var user = firebase.auth().currentUser;
-
-    //console.log(r);
-    //console.log(user.uid);
+    console.log(user.uid);
     this.navCtrl.push(Reservas);
     
   }
