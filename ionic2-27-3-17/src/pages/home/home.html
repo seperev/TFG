@@ -30,6 +30,7 @@
     <!--<ion-card-header color="primary">Fecha</ion-card-header>-->
     <ion-card-content>
       <ion-list>
+        <label>Fecha: </label>
         <ion-item class="a">
           <!--<ion-label>Fecha</ion-label>-->
           <ion-datetime class="b"
@@ -49,6 +50,33 @@
       </ion-list>
     </ion-card-content>
   </ion-card>
+
+<ion-list>
+    <ion-item class="item-divider"  >
+        Cabecera
+    </ion-item>
+    <ion-item>Elemento 1</ion-item>
+    <ion-item>Elemento 2</ion-item>
+    <ion-item>
+      <ion-toggle ng-model = "showDelete2">
+        Show Delete 2
+      </ion-toggle>
+      <ion-label>Elemento 3</ion-label>
+    </ion-item>
+    
+    <ion-list id="prueba">
+      <ion-item class="item-divider" (click)="prueba()" >
+        Cabecera
+      </ion-item>
+    </ion-list>
+    <!--
+      <ion-select>
+        <ion-option>Opcion 1</ion-option>
+        <ion-option>Opcion 2</ion-option>
+      </ion-select>-->
+    
+</ion-list>
+
 
 <!--
   <ion-row>

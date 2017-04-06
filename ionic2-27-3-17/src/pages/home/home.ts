@@ -43,6 +43,10 @@ export class HomePage {
 
   }
 
+prueba(){
+  var d = document.getElementById("prueba");
+  d.innerHTML = "<ion-item>Elemento de prueba</ion-item>";
+}
 
   logout(){
     this.auth.logout();
