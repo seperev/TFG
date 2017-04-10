@@ -23,6 +23,7 @@ export class HomePage {
   reservas: FirebaseListObservable<any>;
   pistas: FirebaseListObservable<any>;
   loginForm:any;
+  res:any;
 
   fechaCorta: string = new Date().toISOString();
   fecha: string = this.fechaCorta;
@@ -38,14 +39,37 @@ export class HomePage {
     this.usuarios = af.database.list('/usuarios');
     this.reservas = af.database.list('/reservas');
     this.pistas = af.database.list('/pistas');
-   
+    this.res = af.database.list('/reservas', {
+      query: {
+        orderByChild: 'dia',
+        equalTo: this.fecha.substr(0,10)
+      }
+    });
+    
+    console.log(this.res[0]);
+    /*
+    var fech = document.getElementById("b");
+    console.log(fech);
+    console.log(this.fecha);
+    var fe = document.getElementById("fe");
+    console.log(fe);
+    */
 
+  }
 
+  verDia(fecha){
+    console.log(fecha);
+    console.log(this.res[0]);
+    
+    
   }
 
 prueba(){
   var d = document.getElementById("prueba");
-  d.innerHTML = "<ion-item>Elemento de prueba</ion-item>";
+  var e = document.createElement("ion-item");
+  e.innerHTML = "Elemento de prueba";
+  d.appendChild(e);
+  
 }
 
   logout(){

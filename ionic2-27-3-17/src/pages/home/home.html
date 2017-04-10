@@ -26,36 +26,61 @@
 
 <ion-content class="grid-basic-page">
 
-  <ion-card class="fecha">
-    <!--<ion-card-header color="primary">Fecha</ion-card-header>-->
-    <ion-card-content>
-      <ion-list>
+  <!--<ion-card class="fecha"> -->
+    <!--<ion-card-header color="primary">Fecha</ion-card-header>
+    <ion-card-content>-->
+      <div class="div">
+      <div class="fecha">
         <label>Fecha: </label>
-        <ion-item class="a">
           <!--<ion-label>Fecha</ion-label>-->
-          <ion-datetime class="b"
+          <ion-datetime id="b" class="b"
             displayFormat="DD/MM/YYYY"
-            pikerFormat="YYY MM DD"
+            pikerFormat="YYY  DD MM"
             [(ngModel)]="fecha"
             cancelText="Cancelar"
             doneText="OK"
             min={{minFecha}}
-            max={{maxFecha}}>
+            max={{maxFecha}}
+            onchange="verDia(fecha)"
+            >            
           </ion-datetime>
+        
+      </div>
+      <div>
+        <button ion-button (click)="verDia()" class="boton">Ver Reservas</button>
+      
+      </div>
+      <p text-center id="fe">{{fecha.substr(0,10)}}</p>
+      </div>
+        
+        
+        <ion-item style="display:none">
+          
         </ion-item>
-        <!--
-        <ion-item>
-          <p text-center>Valor de fecha: {{fecha.substr(0,10)}}</p>
-        </ion-item>-->
-      </ion-list>
+      
+      <!--</ion-list>-->
+      
+      
+    <!--  
     </ion-card-content>
   </ion-card>
+  -->
+
+<ion-list *ngFor="let r of res | async">
+    <ion-item>{{r.nombre}}</ion-item>
+</ion-list>
 
 <ion-list>
     <ion-item class="item-divider"  >
         Cabecera
     </ion-item>
-    <ion-item>Elemento 1</ion-item>
+    <ion-item>
+      <ion-list>
+        <button ion-button>Pista 1</button>
+        <button ion-button>Pista 2</button>
+        <button ion-button>Pista 3</button>
+      </ion-list>
+    </ion-item>
     <ion-item>Elemento 2</ion-item>
     <ion-item>
       <ion-toggle ng-model = "showDelete2">

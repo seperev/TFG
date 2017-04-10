@@ -17,15 +17,26 @@ table{
     text-align: center;
 }
 
-.fecha{
-    width: 100%;
-    margin: auto;
-    text-align: center
-}
-
 
 .b{
     margin: auto;
+}
+
+.div{
+   text-align: center;
+   align-content: center;
+   
+}
+
+
+.fecha{
+    float: left;
+    width: 50%;    
+
+}
+
+.boton{
+    float: left
 }
 
 }
