@@ -32,7 +32,7 @@ export class HomePage {
   reservasRef: any = firebase.database().ref('reservas');
 
   constructor(public navCtrl: NavController,  
-              public alertCtrl: AlertController, af: AngularFire, 
+              public alertCtrl: AlertController, public af: AngularFire, 
               public actionSheetCtrl: ActionSheetController, 
               public auth:AuthProvider,
               public data:DataProvider) {
@@ -47,6 +47,7 @@ export class HomePage {
     });
     
     console.log(this.res[0]);
+
     /*
     var fech = document.getElementById("b");
     console.log(fech);
@@ -57,20 +58,63 @@ export class HomePage {
 
   }
 
-  verDia(fecha){
-    console.log(fecha);
-    console.log(this.res[0]);
+  comprobar(hora, inicio, fin){
     
-    
+    //Tengo que comprobar aqui toda la lista de reservas que hay puesto que puede haber más de una reserva
+    // para la misma pista el mismo día y por lo tanto si en la primera reserva esa pista está disponible
+    // pero en la segunda no está disponible, la pista aparecerá como disponible.
+
+    //Me puedo crear un array para cada pista en el que almacenar los verdaderos y los falsos y luego 
+    // comprobar si hay algun falso.
+
+    // Me creo un array con todas las horas que voy a introducir y otro con todas las pistas de la aplicacion
+    // y luego voy recorriendo las reservas y voy eliminando del array las pistas que estén reservadas
+    // en ese día. Una vez eliminadas todas las pistas ocupadas del array, muestro el array en la vista.
+
+    console.log("hora inicio" + inicio);
+    console.log("hora fin" + fin);
+
+    var ini = Date.parse(inicio);
+    var hor = Date.parse(hora);
+    var f = Date.parse(fin);
+
+    if(ini > hor){
+      return true;
+    }
+    else if(ini = hor){
+      return false;
+    }
+    else{
+      if(hor > f){
+        return false;
+      }
+      else{
+        return true;
+      }
+    }
   }
 
-prueba(){
-  var d = document.getElementById("prueba");
-  var e = document.createElement("ion-item");
-  e.innerHTML = "Elemento de prueba";
-  d.appendChild(e);
-  
-}
+
+  verDia(fecha){
+    console.log(fecha);
+    console.log(this.res);
+    //window.location.reload();
+    
+    this.res = this.af.database.list('/reservas', {
+      query: {
+        orderByChild: 'dia',
+        equalTo: this.fecha.substr(0,10)
+      }
+    });
+  }
+
+  prueba(){
+    var d = document.getElementById("prueba");
+    var e = document.createElement("ion-item");
+    e.innerHTML = "Elemento de prueba";
+    d.appendChild(e);
+    
+  }
 
   logout(){
     this.auth.logout();

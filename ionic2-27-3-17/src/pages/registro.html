@@ -1,0 +1,62 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Login</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<form [formGroup]="loginForm">
+    <ion-list>
+        <ion-item>
+            <ion-label >Email</ion-label>
+            <ion-input type="text" formControlName="email"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label >Password</ion-label>
+            <ion-input type="password" formControlName="password"></ion-input>
+        </ion-item>
+    </ion-list>
+</form>
+<form [formGroup]="login">
+    <ion-list>
+        <ion-item>
+            <ion-label >Nombre</ion-label>
+            <ion-input type="text" id="nombre" formControlName="nombre"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label >DNI</ion-label>
+            <ion-input type="text" id="dni" formControlName="dni"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label >Telefono</ion-label>
+            <ion-input type="number" id="telefono" formControlName="telefono"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label >Nivel de juego</ion-label>
+                <ion-select id="nivel" formControlName="nivel">
+                    <ion-option>Bajo</ion-option>
+                    <ion-option>Medio</ion-option>
+                    <ion-option>Alto</ion-option>
+                </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label >Abonado</ion-label>
+            <ion-toggle id="abonado" formControlName="abonado" [(ngModel)]="ab"></ion-toggle>
+        </ion-item>
+        <ion-item>
+            <ion-label>¿Desea recibir notificaciones?</ion-label>
+            <ion-toggle id="notificaciones" formControlName="notificaciones" [(ngModel)]="notificaciones">
+            </ion-toggle>
+        </ion-item>
+    </ion-list>
+
+    <div>
+      <button ion-button full clear favorite (click)="createAccount()" [disabled]="!loginForm.valid">
+          <ion-icon name="person"></ion-icon>
+          Create an Account</button>
+    </div>
+</form>
+</ion-content>

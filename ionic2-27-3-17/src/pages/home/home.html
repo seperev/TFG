@@ -41,18 +41,20 @@
             doneText="OK"
             min={{minFecha}}
             max={{maxFecha}}
-            onchange="verDia(fecha)"
+            (ionChange)="verDia(fecha)"
             >            
           </ion-datetime>
         
       </div>
+
+      <!--
       <div>
-        <button ion-button (click)="verDia()" class="boton">Ver Reservas</button>
+        <button ion-button (click)="verDia(fecha)" class="boton">Ver Reservas</button>
+      </div>
+      <p text-center id="fe">{{fecha.substr(0,10)}}</p>-->
       
       </div>
-      <p text-center id="fe">{{fecha.substr(0,10)}}</p>
-      </div>
-        
+      
         
         <ion-item style="display:none">
           
@@ -65,10 +67,24 @@
     </ion-card-content>
   </ion-card>
   -->
+<ion-list>
+  <ion-item class="item-divider">
+    10:00
+  </ion-item>
+  <ion-item>
+    <ion-list *ngFor="let r of res | async">
+      <ion-item *ngIf="comprobar('10:00', r.horaInicio, r.horaFin)">
+        {{r.nombrePista}}
+      </ion-item>
+    </ion-list>
+  </ion-item>
+</ion-list>
 
+<!--
 <ion-list *ngFor="let r of res | async">
     <ion-item>{{r.nombre}}</ion-item>
 </ion-list>
+-->
 
 <ion-list>
     <ion-item class="item-divider"  >
@@ -167,4 +183,7 @@
     </ion-col>
   </ion-row>
 -->
+
+  <button ion-button button-possitive (click)="logout()">Cerrar sesión</button>
+
 </ion-content>

@@ -8,15 +8,17 @@ import { AngularFireModule, AuthMethods, FirebaseListObservable, AngularFire } f
 import { AuthProvider } from '../pages/auth-provider'
 
 import { HomePage } from '../pages/home/home'
-import { Registro } from '../pages/registro'
 
 @Component({
-  selector: 'page-auth',
-  templateUrl: 'autenticacion.html'
+  selector: 'page-registro',
+  templateUrl: 'registro.html'
 })
-export class Auth {
+export class Registro {
 
   loginForm:any;
+  ab: boolean;
+  notificaciones: boolean;
+  login:any;
   usuarios: FirebaseListObservable<any>;
 
   constructor(public navCtrl: NavController, 
@@ -31,34 +33,38 @@ export class Auth {
   ngOnInit() {
     this.loginForm = new FormGroup({
         email: new FormControl("",[Validators.required]),
-        password: new FormControl("",Validators.required)
+        password: new FormControl("",Validators.required),
+        
     });
+    this.login = new FormGroup({
+        nombre: new FormControl(""),
+        dni: new FormControl("",Validators.required),
+        telefono: new FormControl("",Validators.required),
+        abonado: new FormControl(""),
+        nivel: new FormControl(""),
+        notificaciones: new FormControl(""),
+    })
   }
 
-  signin() {
-    
-    this.auth.signin(this.loginForm.value)
-    .then((data) => {
-        this.navCtrl.push(HomePage);
-    }, (error) => {
-      console.log("Error: ",error.message);
-    });
-  };
-
-  createAccount() {
-    /*
+  createAccount() {    
     let credentials = this.loginForm.value;
+    let datos = this.login.value;
     this.auth.createAccount(credentials)
     .then((data) => {
       console.log("uid: ",data.uid);
       this.usuarios.push({
-              uid: data.uid
+              uid: data.uid,
+              nombre: datos.nombre,
+              dni: datos.dni,
+              telefono: datos.telefono,
+              abonado: this.ab,
+              nivelJuego: datos.nivel,
+              notificaciones: this.notificaciones,
             });
 
     }, (error) => {
       console.log("Error: ",error.message);
-    });*/
-    this.navCtrl.push(Registro);
+    });
+    
   };
-
 }
