@@ -1,9 +1,14 @@
-Mirar el método subscribe para llamadas http para hacer llamadas a la base de datos.
+﻿Mirar el método subscribe para llamadas http para hacer llamadas a la base de datos.
 Mirar ionic cloud para que genere las llamadas JSON a la base de datos.
 
 Cuenta ionic creator:
 pruebaprueba@gmail.com	
 abcdefg
+
+Para instalar ionic 2 en windows:
+	Lo primero instalar Node.js de la página web
+	Una vez instalado, instalamos cordova e ionic con el comando:
+		npm install -g ionic cordova
 
 Crear el proyecto en ionic2
 ionic start nombre_app sidemenu --v2
