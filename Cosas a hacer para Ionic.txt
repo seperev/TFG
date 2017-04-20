@@ -21,6 +21,7 @@ Añadir paquetes para que se pueda utilizar Firebase:
 https://javebratt.com/angularfire2-ionic-setup/
 	
 En ionic 2 para que me funcionase el servidor e ejecutado varios comandos que no se si han servido para bien o para mal:
+	npm install node-modules	
 	npm install rxjs
 	npm install 
 	npm install 

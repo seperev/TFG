@@ -9,5 +9,23 @@
 
 <ion-content padding>
 
+
+  <div class="div">
+      <div class="fecha">
+        <label>Fecha: </label>
+          <ion-datetime id="b" class="b"
+            displayFormat="DD/MM/YYYY"
+            pikerFormat="YYY  DD MM"
+            [(ngModel)]="fecha"
+            cancelText="Cancelar"
+            doneText="OK"
+            min={{minFecha}}
+            max={{maxFecha}}
+            (ionChange)="verDia(fecha)"
+            >            
+          </ion-datetime>
+        
+      </div>     
+  </div>
   <button ion-button button-possitive (click)="logout()">Cerrar sesión</button>
 </ion-content>

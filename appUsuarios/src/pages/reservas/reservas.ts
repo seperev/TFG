@@ -16,6 +16,13 @@ export class Reservas {
   
   usuarios: FirebaseListObservable<any>;
 
+  
+  fechaCorta: string = new Date().toISOString();
+  fecha: string = this.fechaCorta;
+  minFecha: string = (new Date().getFullYear()-5).toString();
+  maxFecha: string = (new Date().getFullYear()+3).toString();
+  //reservasRef: any = firebase.database().ref('reservas');
+
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               af: AngularFire,
