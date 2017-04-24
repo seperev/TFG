@@ -1,0 +1,30 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "V2 Test"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "V2 Test"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "V2 Test"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "V2 Test"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "V2 Test"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "V2 Test"
+        }
+    },
+    "dependent_plugins": {}
+}
