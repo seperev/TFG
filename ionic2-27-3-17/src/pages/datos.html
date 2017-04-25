@@ -1,0 +1,57 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Datos personales</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+<form [formGroup]="datos">
+    <ion-list *ngFor="let us of usuario | async">
+        <ion-item>
+            <ion-label >Nombre</ion-label>
+            <ion-input type="text" id="nombre" formControlName="nombre" value="{{us.nombre}}"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label >DNI</ion-label>
+            <ion-input type="text" id="dni" formControlName="dni" value="{{us.dni}}"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label >Telefono</ion-label>
+            <ion-input type="number" id="telefono" formControlName="telefono" value="{{us.telefono}}"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label >Nivel de juego</ion-label>
+                <ion-select id="nivel" formControlName="nivel" value="">
+                    <ion-option>Bajo</ion-option>
+                    <ion-option>Medio</ion-option>
+                    <ion-option>Alto</ion-option>
+                </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label >Abonado</ion-label>
+            <ion-toggle id="abonado" formControlName="abonado" [(ngModel)]="ab" value=""></ion-toggle>
+        </ion-item>
+        <ion-item>
+            <ion-label>¿Desea recibir notificaciones?</ion-label>
+            <ion-toggle id="notificaciones" formControlName="notificaciones" [(ngModel)]="notificaciones">
+            </ion-toggle>
+        </ion-item>
+    </ion-list>
+
+    <div>
+      <button ion-button full clear favorite (click)="guardar()" [disabled]="!datos.valid">
+          <ion-icon name="person"></ion-icon>
+          Guardar</button>
+        <button ion-button full clear favorite (click)="cancelar()">Cancelar</button>
+    </div>
+    <div>
+        <ion-list *ngFor="let a of usuario | async">
+            <ion-label>hola {{a.nombre}}</ion-label>
+        </ion-list>
+    </div>
+</form>
+</ion-content>

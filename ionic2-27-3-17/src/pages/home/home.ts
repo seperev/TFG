@@ -8,6 +8,7 @@ import { NavController, AlertController, ActionSheetController } from 'ionic-ang
 import { AuthProvider } from '../auth-provider';
 import { DataProvider } from '../data-provider';
 import { Reservas } from '../reservas/reservas';
+import { Datos } from '../datos';
 
 import firebase from 'firebase';
 
@@ -24,6 +25,9 @@ export class HomePage {
   pistas: FirebaseListObservable<any>;
   loginForm:any;
   res:any;
+
+  //a:any;
+  a = [];
 
   fechaCorta: string = new Date().toISOString();
   fecha: string = this.fechaCorta;
@@ -46,7 +50,76 @@ export class HomePage {
       }
     });
     
-    console.log(this.res[0]);
+    //console.log(this.res[0]);
+    var horas = ['10','11','12','13','14','15','16','17','18','19','20','21'];
+    var pi = [];
+    this.pistas.forEach(pista => pi.push(pista[0].nombre));
+    //console.log(pi);
+    
+    //console.log(pi);
+    for(var i = 0; i < horas.length; i++){
+      var f = [];
+      console.log('tamaño ' + pi.length);
+
+      for(var t = 0; t < pi.length; t++){
+        console.log('prueba');
+        f[t]= pi[t];
+      }
+      console.log(f);
+      this.a.push({clave:horas[i], valor:f});
+      
+    }
+    //console.log("vector antes de definirlo manualmente: " + this.a);
+    //var p = ['p1','p2'];
+    //this.a = [{clave:horas[0], valor:p}, {clave:horas[1], valor:p}];
+    //console.log(this.a);
+    
+    //console.log(this.a[2]);
+
+
+    //Ahora elimino las pistas que estan reservadas de las horas reservadas
+    
+    this.res.forEach(reserva => {
+      if(reserva[0] != null){
+      //console.log(reserva[0]);
+      //console.log('paso 1');
+      for(var j = 0; j < this.a.length; j++){
+        //console.log('paso 2');
+        //console.log('hola ' + this.a[j].clave);
+        //console.log('hora inicio de reserva '+ reserva[0].horaInicio)
+        if(reserva[0].horaInicio == this.a[j].clave){
+          console.log("entra");
+          //this.a[j].remove();
+
+          //var pistas = this.a[j].valor;
+          var indice = this.a[j].valor.indexOf(reserva[0].nombrePista);
+          //console.log(indice);
+          if(indice > -1){
+            //console.log('valor ' + this.a[j].valor);
+
+            //Con la siguiente linea elimino la pista que está reservada
+            //this.a[j].valor.splice(indice,1);
+            
+          }
+          //this.a[j].valor = pistas;
+          console.log('eliminado');
+          /*var indice = this.a.indexOf(10);
+          console.log('indice ' + indice);
+          if (indice > -1) {
+            this.a.splice(indice, 1);
+            console.log("eliminando");
+          }*/
+          
+          //console.log(this.a);
+        }
+        //console.log(this.a[j].valor);
+      }
+      }
+    }
+    
+    );
+    //console.log(pi);
+    //console.log(this.a);
 
     /*
     var fech = document.getElementById("b");
@@ -56,6 +129,10 @@ export class HomePage {
     console.log(fe);
     */
 
+  }
+
+  irADatos(){
+    this.navCtrl.push(Datos);
   }
 
   comprobar(hora, inicio, fin){
