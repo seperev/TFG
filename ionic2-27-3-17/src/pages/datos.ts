@@ -16,6 +16,7 @@ import firebase from 'firebase';
 })
 export class Datos {
 
+  usersRef: any = firebase.database().ref('usuarios');
   user:any;
 
   ab: boolean;
@@ -38,7 +39,7 @@ export class Datos {
             equalTo: this.user.uid
         }
     });
-    //console.log(this.usuario.nombre);
+    console.log(this.user.uid);
   }
 
   ngOnInit() {
@@ -50,12 +51,16 @@ export class Datos {
         nivel: new FormControl(""),
         notificaciones: new FormControl(""),
     })
+    console.log(this.datos);
   }
 
   guardar(){
-    
-    console.log(this.usuario);
+    let d = this.datos.value;
+    //this.usersRef.child().child('PHtCDdrK23NHLadJfNVvpHyqKkw1').update({nombre:d.nombre});
     //this.usuario.nombre = this.datos.nombre;
+    firebase.database().ref('usuarios/' + this.user.uid).update({
+      nombre: 'hola'
+  });
 
   }
 

@@ -26,6 +26,13 @@ export class DataProvider {
     getReservasRef(){
         return this.reservasRef;
     }
+    getReservasDia(){
+        var r =[];
+        this.reservasRef.orderByChild('dia').equalTo('2017-04-25').on("child_added", function(snapshot){
+            r.push(snapshot.val().nombre);
+        }).then((data) => r = data);
+        return r;
+    }
 
     getReservasDeUsuario(usuario) : Promise<string[]> {
         var res = [];

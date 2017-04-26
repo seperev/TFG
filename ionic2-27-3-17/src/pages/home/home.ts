@@ -28,7 +28,7 @@ export class HomePage {
 
   //a:any;
   a = [];
-
+  pi=[];
   fechaCorta: string = new Date().toISOString();
   fecha: string = this.fechaCorta;
   minFecha: string = (new Date().getFullYear()-5).toString();
@@ -40,6 +40,7 @@ export class HomePage {
               public actionSheetCtrl: ActionSheetController, 
               public auth:AuthProvider,
               public data:DataProvider) {
+
     this.usuarios = af.database.list('/usuarios');
     this.reservas = af.database.list('/reservas');
     this.pistas = af.database.list('/pistas');
@@ -48,25 +49,48 @@ export class HomePage {
         orderByChild: 'dia',
         equalTo: this.fecha.substr(0,10)
       }
+    });    
+
+    /*
+    this.usuarios.subscribe(items => {
+      items.forEach(item => {
+          console.log('Item:', item);
+      });
+    });*/
+
+    //console.log(this.reservas);
+    //console.log(this.pistas);
+    this.pistas.subscribe(items => {
+      items.forEach(pista => {
+        console.log('Item:', pista.nombre);
+        //console.log('nombre de cada pista '+ item.nombre);
+        this.pi.push(pista.nombre);
+        console.log("tamaño de pi " + this.pi.length);
+        this.mostrarReservas();
+      });
     });
-    
+  }
+
+
+  mostrarReservas(){
+    this.a = [];
     //console.log(this.res[0]);
     var horas = ['10','11','12','13','14','15','16','17','18','19','20','21'];
-    var pi = [];
-    this.pistas.forEach(pista => pi.push(pista[0].nombre));
+    //var pi = [];
+    //this.pistas.forEach(pista => pi.push(pista[0].nombre));
     //console.log(pi);
-    
+    console.log('horas ' +horas);
     //console.log(pi);
     for(var i = 0; i < horas.length; i++){
       var f = [];
-      console.log('tamaño ' + pi.length);
+      console.log('tamaño ' + this.pi.length);
 
-      for(var t = 0; t < pi.length; t++){
+      for(var t = 0; t < this.pi.length; t++){
         console.log('prueba');
-        f[t]= pi[t];
+        f[t]= this.pi[t];
       }
-      console.log(f);
-      this.a.push({clave:horas[i], valor:f});
+      console.log('tamaño de f ' + f.length);
+      this.a.push({clave:horas[i], valor:f.slice()});
       
     }
     //console.log("vector antes de definirlo manualmente: " + this.a);
@@ -78,27 +102,30 @@ export class HomePage {
 
 
     //Ahora elimino las pistas que estan reservadas de las horas reservadas
+    var t = 0;
     
-    this.res.forEach(reserva => {
-      if(reserva[0] != null){
+    this.res.subscribe(items => {
+    items.forEach(reserva => {
+      console.log('numero de reservas ' + t++);
+      if(reserva != null){
       //console.log(reserva[0]);
       //console.log('paso 1');
       for(var j = 0; j < this.a.length; j++){
         //console.log('paso 2');
         //console.log('hola ' + this.a[j].clave);
         //console.log('hora inicio de reserva '+ reserva[0].horaInicio)
-        if(reserva[0].horaInicio == this.a[j].clave){
+        if(reserva.horaInicio == this.a[j].clave){
           console.log("entra");
           //this.a[j].remove();
 
           //var pistas = this.a[j].valor;
-          var indice = this.a[j].valor.indexOf(reserva[0].nombrePista);
+          var indice = this.a[j].valor.indexOf(reserva.nombrePista);
           //console.log(indice);
           if(indice > -1){
             //console.log('valor ' + this.a[j].valor);
 
             //Con la siguiente linea elimino la pista que está reservada
-            //this.a[j].valor.splice(indice,1);
+            this.a[j].valor.splice(indice,1);
             
           }
           //this.a[j].valor = pistas;
@@ -115,9 +142,8 @@ export class HomePage {
         //console.log(this.a[j].valor);
       }
       }
-    }
-    
-    );
+    });
+    });
     //console.log(pi);
     //console.log(this.a);
 
@@ -128,7 +154,6 @@ export class HomePage {
     var fe = document.getElementById("fe");
     console.log(fe);
     */
-
   }
 
   irADatos(){
@@ -183,6 +208,15 @@ export class HomePage {
         equalTo: this.fecha.substr(0,10)
       }
     });
+
+    this.pistas.forEach(pista => {
+      this.pi = [];
+      this.pi.push(pista[0].nombre);
+      console.log("tamaño de pi " + this.pi.length);
+      this.mostrarReservas();
+      });
+
+    //this.mostrarReservas();
   }
 
   prueba(){

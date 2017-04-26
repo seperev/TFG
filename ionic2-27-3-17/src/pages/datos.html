@@ -25,7 +25,7 @@
         </ion-item>
         <ion-item>
             <ion-label >Nivel de juego</ion-label>
-                <ion-select id="nivel" formControlName="nivel" value="">
+                <ion-select id="nivel" formControlName="nivel" >
                     <ion-option>Bajo</ion-option>
                     <ion-option>Medio</ion-option>
                     <ion-option>Alto</ion-option>
@@ -33,7 +33,7 @@
         </ion-item>
         <ion-item>
             <ion-label >Abonado</ion-label>
-            <ion-toggle id="abonado" formControlName="abonado" [(ngModel)]="ab" value=""></ion-toggle>
+            <ion-toggle id="abonado" formControlName="abonado" [(ngModel)]="ab" value="true"></ion-toggle>
         </ion-item>
         <ion-item>
             <ion-label>¿Desea recibir notificaciones?</ion-label>
