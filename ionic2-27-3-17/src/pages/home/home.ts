@@ -42,14 +42,53 @@ export class HomePage {
               public data:DataProvider) {
 
     this.usuarios = af.database.list('/usuarios');
+    let usuarioscargados = false;
     this.reservas = af.database.list('/reservas');
+    let reservascargadas = false;
     this.pistas = af.database.list('/pistas');
+    let pistascargadas = false;
     this.res = af.database.list('/reservas', {
       query: {
         orderByChild: 'dia',
         equalTo: this.fecha.substr(0,10)
       }
     });    
+    let rescargadas = false;
+
+    this.usuarios.subscribe(items => {
+      usuarioscargados = true;
+      if(usuarioscargados && reservascargadas && pistascargadas && rescargadas){
+        console.log('todo cargado');
+        this.mostrarReservas();
+      }
+    });
+    this.reservas.subscribe(items => {
+      reservascargadas = true;
+      if(usuarioscargados && reservascargadas && pistascargadas && rescargadas){
+        console.log('todo cargado');
+        this.mostrarReservas();
+      }
+    });
+    this.pistas.subscribe(items => {
+      pistascargadas = true;
+      if(usuarioscargados && reservascargadas && pistascargadas && rescargadas){
+        console.log('todo cargado');
+        this.mostrarReservas();
+      }
+    });
+    this.res.subscribe(items => {
+      rescargadas = true;
+      if(usuarioscargados && reservascargadas && pistascargadas && rescargadas){
+        console.log('todo cargado');
+        this.mostrarReservas();
+      }
+    })
+
+    /*
+    if(usuarioscargados && reservascargadas && pistascargadas && rescargadas){
+      console.log('todo cargado');
+      this.mostrarReservas();
+    }*/
 
     /*
     this.usuarios.subscribe(items => {
@@ -58,8 +97,8 @@ export class HomePage {
       });
     });*/
 
-    //console.log(this.reservas);
-    //console.log(this.pistas);
+
+    /*
     this.pistas.subscribe(items => {
       items.forEach(pista => {
         console.log('Item:', pista.nombre);
@@ -69,30 +108,62 @@ export class HomePage {
         this.mostrarReservas();
       });
     });
+    */
+    
   }
 
+  reservar(event){
+    
+  }
 
   mostrarReservas(){
     this.a = [];
     //console.log(this.res[0]);
-    var horas = ['10','11','12','13','14','15','16','17','18','19','20','21'];
+    let horas = ['10','11','12','13','14','15','16','17','18','19','20','21'];
     //var pi = [];
-    //this.pistas.forEach(pista => pi.push(pista[0].nombre));
+    this.pi = [];
+    //this.pistas.forEach(pista => this.pi.push(pista.nombre));
+    let n=0;
+    this.pistas.subscribe(items => {
+      items.forEach(pista => {
+        n++;
+        this.pi.push(pista.nombre)
+      });
+      console.log('tamaño del array de pistas ' + n);
+      //console.log(pi);
+      console.log('horas ' +horas);
+      //console.log(pi);
+      for(let i = 0; i < horas.length; i++){
+        let f = [];
+        console.log('tamaño ' + this.pi.length);
+
+        for(let t = 0; t < this.pi.length; t++){
+          console.log('prueba');
+          f.push(this.pi[t]);
+        }
+        console.log(f);
+        this.a.push({clave:horas[i], valor:f});
+      } 
+    })
+  
+  /*
+    console.log('tamaño del array de pistas ' + n);
     //console.log(pi);
     console.log('horas ' +horas);
     //console.log(pi);
-    for(var i = 0; i < horas.length; i++){
-      var f = [];
+    for(let i = 0; i < horas.length; i++){
+      let f = [];
       console.log('tamaño ' + this.pi.length);
 
-      for(var t = 0; t < this.pi.length; t++){
+      for(let t = 0; t < this.pi.length; t++){
         console.log('prueba');
-        f[t]= this.pi[t];
+        f.push(this.pi[t]);
       }
-      console.log('tamaño de f ' + f.length);
-      this.a.push({clave:horas[i], valor:f.slice()});
-      
-    }
+      console.log(f);
+      this.a.push({clave:horas[i], valor:f});
+    }*/
+
+
     //console.log("vector antes de definirlo manualmente: " + this.a);
     //var p = ['p1','p2'];
     //this.a = [{clave:horas[0], valor:p}, {clave:horas[1], valor:p}];

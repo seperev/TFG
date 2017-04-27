@@ -66,7 +66,7 @@
     </ion-item>
     <ion-item>
       <ion-list *ngFor="let x of z.valor">
-        <button ion-button>
+        <button ion-button (click)="reservar($event)">
           {{x}}
         </button>
       </ion-list>

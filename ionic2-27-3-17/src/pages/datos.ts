@@ -6,6 +6,7 @@ import { Validators, FormGroup, FormControl } from '@angular/forms';
 import { AngularFireModule, AuthMethods, FirebaseListObservable, AngularFire } from 'angularfire2';
  
 import { AuthProvider } from '../pages/auth-provider'
+import { DataProvider } from '../pages/data-provider'
 
 import { HomePage } from '../pages/home/home'
 import firebase from 'firebase';
@@ -28,7 +29,8 @@ export class Datos {
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public af: AngularFire,
-              public auth: AuthProvider
+              public auth: AuthProvider,
+              public data: DataProvider
               ) 
   {
     this.usuarios = af.database.list('/usuarios');
@@ -58,10 +60,33 @@ export class Datos {
     let d = this.datos.value;
     //this.usersRef.child().child('PHtCDdrK23NHLadJfNVvpHyqKkw1').update({nombre:d.nombre});
     //this.usuario.nombre = this.datos.nombre;
+    /*
     firebase.database().ref('usuarios/' + this.user.uid).update({
       nombre: 'hola'
-  });
-
+    });*/
+    //this.data.modificarUsuario(this.user.uid);
+    this.usuario.subscribe(items => {
+      items.forEach(us => {
+        this.usuarios.remove(us);
+        //us.nombre === 'añsldfjaslf'
+      })
+    })
+    this.usuarios.push({
+      nombre:d.nombre,
+      dni: d.dni,
+      telefono: d.telefono,
+      abonado: d.abonado,
+      nivel: d.nivel,
+      notificaciones: d.notificaciones,
+      uid: this.user.uid
+    })
+    //this.usuarios.remove();
+    /*
+    this.usuario.subscribe(items => {
+      items.forEach(usuar => {
+        usuar.nombre === 'adios'
+      })
+    });*/
   }
 
   cancelar(){

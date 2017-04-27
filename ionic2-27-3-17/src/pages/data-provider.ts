@@ -34,6 +34,16 @@ export class DataProvider {
         return r;
     }
 
+    modificarUsuario(usuario){
+        
+        this.usersRef.orderByChild('uid').equalTo(usuario).on("child_added", function(snapshot){
+            snapshot.val().nombre === 'adios';
+            console.log('cambiado');
+            
+        })
+        
+    }
+
     getReservasDeUsuario(usuario) : Promise<string[]> {
         var res = [];
         this.reservasRef.orderByChild('usuario').equalTo(usuario).on("child_added", function(snapshot){
